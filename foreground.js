@@ -10,7 +10,7 @@ let reportedBool = false;
 
 let aiUserProfileFlair = document.createElement("div");
 aiUserProfileFlair.style = "font-family: TwitterChirp; border-radius: 2px; padding: 10px; margin-top: 3px; background-color: #331111; text-overflow: unset;"
-aiUserProfileFlair.innerHTML = "<div style='font-weight: bold;'>AI User</div><br/><div>This Twitter Account has been flagged for using, generating or advertising images generated with Artificial Intelligence.</div><span style='font-size:8pt; font-family: TwitterChirp; color:#AA4545'>Buster</span>";
+aiUserProfileFlair.innerHTML = "<div style='font-weight: bold;'>AI User</div><br/><div>This Twitter Account has been flagged for using, generating or advertising images generated with Artificial Intelligence.</div><span style='font-size:8pt; font-family: TwitterChirp; color:#AA4545'><a href='https://discord.gg/BEhRjVvDMP' target='_blank'>Mistake? Let us know</a></span>"
 aiUserProfileFlair.className = "buster_aiProfileFlair"
 
 let blocklist = [];
@@ -81,7 +81,7 @@ window.onload = async function () {
 
 async function reportProcedure() {
     if (!reportCheck(document.location.pathname.slice(1))) {
-        chrome.runtime.sendMessage(chrome.runtime.id, { command: "report", user: document.location.pathname.slice(1) }, (response) => {
+        chrome.runtime.sendMessage(chrome.runtime.id, { command: "report", user: document.location.pathname.split("/")[1] }, (response) => {
             reportList = response;
             reportButton.innerHTML = "Sent for review"
             reportButton.style.backgroundColor = "green"
