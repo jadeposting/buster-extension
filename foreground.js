@@ -67,12 +67,10 @@ window.onload = async function () {
             // user appearing as a tweet
             if (mut.addedNodes.length != 0 && mut.addedNodes[0].nodeType == 1) {
                 if (mut.addedNodes[0].getAttribute("data-testid") == "cellInnerDiv") {
-                    if (mut.addedNodes[0].querySelector("[data-testid='User-Name']")) {
-                        let uName = mut.addedNodes[0].querySelector("[data-testid='User-Name']").querySelectorAll("a")[1].querySelector("span")
-                        if (listCheck(uName.innerHTML.slice(1))) {
-                            uName.innerHTML = uName.innerHTML + aiUserFlair.outerHTML;
-                            uName.closest("[data-testid='cellInnerDiv']").style.backgroundColor = "#221111"
-                        }
+                    const usernameSpan = mut.addedNodes[0].querySelector("[data-testid='User-Name'] a[tabindex='-1'] span, [data-testid='UserCell'] a[tabindex='-1'] span");
+                    if (usernameSpan && listCheck(usernameSpan.innerHTML.slice(1))) {
+                        usernameSpan.innerHTML = usernameSpan.innerHTML + aiUserFlair.outerHTML;
+                        usernameSpan.closest("[data-testid='cellInnerDiv']").style.backgroundColor = "#221111"
                     }
                 }
             }
