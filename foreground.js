@@ -13,8 +13,8 @@ aiUserProfileFlair.style = "font-family: TwitterChirp; border-radius: 2px; paddi
 aiUserProfileFlair.innerHTML = "<div style='font-weight: bold;'>AI User</div><br/><div>This Twitter Account has been flagged for using, generating or advertising images generated with Artificial Intelligence, and passing it off as original content.</div><span style='font-size:8pt; font-family: TwitterChirp; color:#AA4545'>Buster</span>";
 aiUserProfileFlair.className = "buster_aiProfileFlair"
 
-let blocklist;
-let reportList;
+let blocklist = [];
+let reportList = [];
 
 window.onload = async function () {
     chrome.runtime.sendMessage({ command: "list" }, (response) => {

@@ -1,9 +1,7 @@
-let banListJson;
+let banListJson = { list: [] };
 let reportList = [];
 
-chrome.runtime.onInstalled.addListener(() => {
-    startup()
-})
+chrome.runtime.onStartup.addListener(startup)
 
 async function startup() {
     let response = await fetch("https://buster-backend.jadeposting.workers.dev/users/");
