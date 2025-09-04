@@ -33,5 +33,11 @@
             ]
         }
     ],
-    "minimum_chrome_version": "120"
+    "minimum_chrome_version": "120",
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "buster@jadeposting",
+            "strict_min_version": "109.0"
+        }
+    }
 }

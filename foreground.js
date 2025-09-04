@@ -6,7 +6,6 @@ let reportButton = document.createElement("button");
 reportButton.style = "cursor: pointer; font-weight: bold; font-family: TwitterChirp; margin: 10px 0px 5px 0px; padding: 5px 10px 5px 10px; border-radius: 2px; width: max-content; background-color: #CC3333; border: none;"
 reportButton.innerHTML = "Report AI"
 reportButton.className = "buster_ReportButton"
-let reportedBool = false;
 
 let aiUserProfileFlair = document.createElement("div");
 aiUserProfileFlair.style = "font-family: TwitterChirp; border-radius: 2px; padding: 10px; margin-top: 3px; background-color: #331111; text-overflow: unset;"
@@ -25,8 +24,9 @@ window.onload = async function () {
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mut) => {
             const profileUsername = "[data-testid='UserName']"
+            const urlUsername = document.location.pathname.toLowerCase().split("/")[1]
             if (document.querySelector(profileUsername)) {
-                if (listCheck(document.location.pathname.slice(1))) {
+                if (listCheck(urlUsername)) {
                     if (!document.querySelector(".buster_aiProfileFlair")) {
                         document.querySelector(profileUsername).append(aiUserProfileFlair);
                     }
@@ -44,7 +44,7 @@ window.onload = async function () {
                         reportButton.removeEventListener("click", reportProcedure, false)
                         reportButton.addEventListener("click", reportProcedure, false)
                     } else {
-                        if (reportCheck(document.location.pathname.slice(1))) {
+                        if (reportCheck(urlUsername)) {
                             if (reportButton.style.backgroundColor != "green") {
                                 reportButton.style.backgroundColor = "green"
                                 reportButton.innerHTML = "Sent for review"
@@ -64,7 +64,7 @@ window.onload = async function () {
                 }
             }
 
-            // user appearing as a tweet
+            // user appearing as a tweet or follower/following
             if (mut.addedNodes.length != 0 && mut.addedNodes[0].nodeType == 1) {
                 if (mut.addedNodes[0].getAttribute("data-testid") == "cellInnerDiv") {
                     const usernameSpan = mut.addedNodes[0].querySelector("[data-testid='User-Name'] a[tabindex='-1'] span, [data-testid='UserCell'] a[tabindex='-1'] span");
@@ -80,7 +80,7 @@ window.onload = async function () {
 }();
 
 async function reportProcedure() {
-    if (!reportCheck(document.location.pathname.slice(1))) {
+    if (!reportCheck(document.location.pathname.split("/")[1])) {
         chrome.runtime.sendMessage(chrome.runtime.id, { command: "report", user: document.location.pathname.split("/")[1] }, (response) => {
             reportList = response;
             reportButton.innerHTML = "Sent for review"
