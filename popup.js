@@ -1,4 +1,4 @@
-await chrome.runtime.sendMessage(chrome.runtime.id, { command: "list" }, (response) => startup(response))
+chrome.runtime.sendMessage(chrome.runtime.id, { command: "list" }, (response) => startup(response))
 
 async function startup(response) {
     let divet = document.querySelector("#twitnum")

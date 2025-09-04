@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Buster",
     "description": "Highlight user-sourced accounts that have been reported to use AI.",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "icons": {
         "16": "images/icon16.png",
         "48": "images/icon48.png",
