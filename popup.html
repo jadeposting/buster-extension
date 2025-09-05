@@ -2,12 +2,19 @@
     body {
         width: 300px;
         background: #171717;
-        font-family: "Bahnschrift Condensed", sans-serif;
+        font-family: sans-serif;
         color: white;
     }
 
     #accounts {
+        margin: 3px;
         text-align: center;
+    }
+
+    #reloadButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     #credit {
@@ -26,8 +33,12 @@
     <h1><img src="images/icon48white.png"> Buster <span id="ver" style="font-size: 8pt"></span></h1></img>
 </div>
 <div id="accounts">
-    <p><span style="color:#1da1f2">Twitter</span> accounts flagged: <span id="twitnum" style="color:#1da1f2">#</span>
+    <p>
+        <span id="twitnum">#</span><span style="color:#1da1f2"> Twitter</span> accounts flagged
     </p>
+</div>
+<div id="reloadButton">
+    <button id="reload">Reload Blocklist</button>
 </div>
 <div id="credit">
     <p>originally by k0vac, modified by jadeposting</p>
